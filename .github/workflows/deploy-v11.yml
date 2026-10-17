@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'releases/Healthcare_Empire_V11_Mobile_Beta_Cloudflare.zip'
+      - 'Healthcare_Empire_V11_Mobile_Beta_Cloudflare.zip'
       - 'tools/prepare-v11.py'
       - 'v11-supabase-save.js'
       - '.github/workflows/deploy-v11.yml'
