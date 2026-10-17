@@ -9,6 +9,7 @@ on:
       - 'v11-supabase-save.js'
       - 'v12-ui.js'
       - 'v12-ui.css'
+      - 'rooms/**'
       - '.github/workflows/deploy-v11.yml'
   workflow_dispatch:
 permissions:
