@@ -35,10 +35,12 @@ html = (SITE / "index.html").read_text(encoding="utf-8")
 html = html.replace('<script defer src="auth-cloud.js"></script>', '')
 html = html.replace(
     "</body></html>",
-    '<script defer src="v11-supabase-save.js"></script></body></html>'
+    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script></body></html>'
 )
 (SITE / "index.html").write_text(html, encoding="utf-8")
 (SITE / "v11-supabase-save.js").write_bytes((ROOT / "v11-supabase-save.js").read_bytes())
+for name in ("v12-ui.js", "v12-ui.css"):
+    (SITE / name).write_bytes((ROOT / name).read_bytes())
 (SITE / "cloud-config.js").write_text(
     "window.HE_CLOUD_CONFIG = Object.freeze({"
     "supabaseUrl:'https://qrxfmymmsjsyzhvuudtj.supabase.co',"
