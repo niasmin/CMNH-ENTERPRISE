@@ -48,5 +48,8 @@ for name in ("v12-ui.js", "v12-ui.css"):
     "});\n",
     encoding="utf-8",
 )
+rooms = ROOT / "rooms"
+if rooms.is_dir():
+    shutil.copytree(rooms, SITE / "rooms", dirs_exist_ok=True)
 (SITE / ".nojekyll").write_text("", encoding="utf-8")
 print("V11 ready:", len(list(SITE.rglob("*"))), "entries")
