@@ -1,6 +1,6 @@
 /* Healthcare Empire procedural low-poly 3D characters (Three.js, no paid assets). */
-(function(){'use strict';
-const T=window.THREE;if(!T)return;
+import * as T from 'three';
+
 const COLORS={male:0x508fba,female:0xc88fae,nurse:0x70b8b2,caregiver:0x86a8ce,resident:0xc5b38f};
 const mat=c=>new T.MeshStandardMaterial({color:c,roughness:.87});
 function part(parent,geo,color,x,y,z){const m=new T.Mesh(geo,mat(color));m.position.set(x,y,z);m.castShadow=true;parent.add(m);return m}
@@ -15,5 +15,4 @@ for(const sign of [-1,1]){const a=new T.Group();a.position.set(sign*.27,1.42,0);
 const leg=new T.Group();leg.position.set(sign*.13,.83,0);root.add(leg);part(leg,new T.CapsuleGeometry(.10,.42,4,8),role==='resident'?0x797b88:0x526c82,0,-.31,0);part(leg,new T.BoxGeometry(.19,.12,.31),0x576271,0,-.68,.075);legs.push(leg)}
 root.userData.animate=(t,mode='walk')=>{const moving=mode==='walk'||mode==='run';const speed=mode==='run'?8:5;const amount=moving?(mode==='run'?.68:.42):.045;arms.forEach((a,i)=>a.rotation.x=Math.sin(t*speed+i*Math.PI)*amount);legs.forEach((l,i)=>l.rotation.x=Math.sin(t*speed+i*Math.PI+Math.PI)*amount);torso.rotation.z=Math.sin(t*2)*.015;root.position.y=moving?Math.abs(Math.sin(t*speed))*.025:Math.sin(t*2)*.008};
 return root}
-window.HealthcareCharacters3D={create:character,roles:Object.keys(COLORS),version:'procedural-0.1'};
-})();
+export {character as createCharacter};
