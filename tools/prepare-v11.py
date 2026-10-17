@@ -6,6 +6,8 @@ import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / "releases/Healthcare_Empire_V11_Mobile_Beta_Cloudflare.zip"
+if not ARCHIVE.is_file():
+    ARCHIVE = ROOT / "Healthcare_Empire_V11_Mobile_Beta_Cloudflare.zip"
 SITE = ROOT / "site"
 if not ARCHIVE.is_file():
     raise SystemExit(
