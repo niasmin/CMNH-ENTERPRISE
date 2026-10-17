@@ -1,0 +1,81 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Healthcare Empire | Special Care Room 3D</title><style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:system-ui,"Noto Sans Thai",sans-serif;background:#cbeaf1;color:#16405a}#viewer{position:fixed;inset:0}canvas{display:block}header{position:absolute;top:12px;left:12px;right:12px;display:flex;align-items:center;gap:8px;z-index:3;pointer-events:none}.brand{padding:9px 13px;border:3px solid white;border-radius:17px;background:#14678c;color:#fff;box-shadow:0 3px 14px #174b5b70}.brand strong{font-size:16px}.brand small{display:block;font-size:11px}.badge{margin-left:auto;padding:8px 11px;border:2px solid #fff;border-radius:14px;background:#fffef6;font-size:12px;font-weight:800}nav{position:absolute;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:5px;max-width:calc(100vw - 12px);overflow:auto;padding:7px;background:#fffffff2;border:2px solid white;border-radius:19px;z-index:4;box-shadow:0 4px 15px #225c6870}button{border:0;border-radius:12px;padding:10px 12px;background:#e3f0f8;color:#17516a;font-weight:800;white-space:nowrap;cursor:pointer}button.active{background:#0b9c91;color:white}#info{position:absolute;top:96px;right:12px;width:min(295px,calc(100vw - 24px));z-index:4;background:#fffffff0;border:2px solid white;border-radius:16px;padding:13px;box-shadow:0 4px 14px #24576b4d;display:none}#info b{display:block;margin-bottom:5px}#info p{font-size:13px;margin:0}#hint{position:absolute;bottom:90px;left:12px;padding:8px 10px;border-radius:12px;background:#ffffffd9;font-size:12px;z-index:2}#error{display:none;position:absolute;top:35%;left:10%;width:80%;padding:18px;background:#fff;border-radius:18px;z-index:10}@media(max-width:640px){.brand strong{font-size:13px}.brand small,.badge{font-size:10px}#hint{font-size:10px}}
+</style><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script></head><body><div id="viewer"></div><header><div class="brand"><strong>💗 ห้องพักผู้ป่วยพิเศษ</strong><small>Healthcare Empire · Special Care Room · 3D</small></div><div class="badge">1 เตียง · เฝ้าระวัง · พยาบาลดูแล</div></header><aside id="info"><b id="it"></b><p id="desc"></p></aside><div id="hint">ลากหมุนห้อง · บีบนิ้วซูม · แตะอุปกรณ์เพื่อดูข้อมูล</div><div id="error">ไม่สามารถโหลดฉาก 3D ได้ โปรดตรวจสอบอินเทอร์เน็ตและ WebGL</div><nav><button data-view="iso" class="active">🏠 ภาพรวม</button><button data-view="top">🗺️ มุมบน</button><button data-view="bed">🛏️ เตียงพักฟื้น</button><button data-view="nursing">🩺 จุดพยาบาล</button><button data-view="bath">🚿 ห้องน้ำ</button><button data-view="reset">↺ รีเซ็ต</button></nav><script type="module">
+import * as THREE from "three";import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+try{
+const scene=new THREE.Scene();scene.background=new THREE.Color("#c3e8f4");
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.5;document.getElementById("viewer").append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.1,100);camera.position.set(12,11,14);
+const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.7,0);controls.enableDamping=true;controls.minDistance=5;controls.maxDistance=25;controls.maxPolarAngle=Math.PI/2.06;
+scene.add(new THREE.HemisphereLight(0xffffff,0x9aafa3,2.1));const sun=new THREE.DirectionalLight(0xffe4b8,3);sun.position.set(-5,10,7);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-12;sun.shadow.camera.right=12;sun.shadow.camera.top=12;sun.shadow.camera.bottom=-12;scene.add(sun);
+const pick=[];const material=c=>new THREE.MeshStandardMaterial({color:c,roughness:.78});
+function box(n,x,y,z,w,h,d,c,description=""){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material(c));m.position.set(x,y,z);m.name=n;m.castShadow=true;m.receiveShadow=true;scene.add(m);if(description){m.userData.description=description;pick.push(m)}return m}
+function cyl(n,x,y,z,rt,rb,h,c,description=""){const m=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,16),material(c));m.position.set(x,y,z);m.name=n;m.castShadow=true;scene.add(m);if(description){m.userData.description=description;pick.push(m)}return m}
+function sphere(n,x,y,z,r,c){const m=new THREE.Mesh(new THREE.SphereGeometry(r,16,12),material(c));m.position.set(x,y,z);m.castShadow=true;scene.add(m);return m}
+function plant(x,z,s=1){cyl("กระถาง",x,.22*s,z,.2*s,.17*s,.44*s,0xe6ac81);for(let i=0;i<7;i++){let a=i*2.4;const m=sphere("ใบไม้",x+Math.sin(a)*.2*s,.58*s+Math.cos(a)*.08*s,z+Math.cos(a)*.2*s,.2*s,i%2?0x439b6b:0x68b979);m.scale.set(.75,1.35,.65)}}
+function bar(n,x,y,z,w,h,d,c,desc=""){return box(n,x,y,z,w,h,d,c,desc)}
+// 9.0 x 7.4 metre room: open front for dollhouse camera; bathroom at left-rear
+box("พื้นห้อง",0,-.15,0,9,.3,7.4,0xe7d2b6);
+box("ผนังหลัง",0,1.5,-3.6,9,3,.2,0xf6e9dc);
+box("ผนังซ้าย",-4.4,1.5,-.5,.2,3,6.2,0xf5e6d7);
+box("ผนังห้องน้ำด้านข้าง",-2.15,1.42,-2.65,.15,2.85,1.7,0xe7d9c9);
+box("ผนังห้องน้ำด้านหน้า",-3.3,1.42,-1.72,2.2,2.85,.14,0xf2e6d9);
+box("พื้นห้องน้ำ",-3.3,-.03,-2.64,2.2,.07,1.8,0xd6e4de);
+box("กรอบหน้าต่าง",2.9,1.72,-3.43,2.65,1.75,.11,0xb78258);
+box("กระจกหน้าต่าง",2.9,1.72,-3.35,2.42,1.55,.025,0x93cedb);
+box("วงกบตั้ง",2.9,1.72,-3.31,.09,1.63,.12,0xfff4e4);
+box("วงกบนอน",2.9,1.72,-3.31,2.53,.09,.12,0xfff4e4);
+// special care bed, accessible on both sides
+box("ฐานเตียงปรับระดับ",.1,.42,-1.35,1.35,.35,2.45,0xd9e0dc,"เตียงดูแลพิเศษปรับระดับ มีราวกันตกและพื้นที่สำหรับเจ้าหน้าที่ดูแล");
+box("ที่นอน",.1,.68,-1.35,1.27,.2,2.3,0xfffaf1);
+box("ผ้าห่ม",.1,.81,-.90,1.27,.1,1.3,0x9bc4ca);
+box("หมอน",.1,.86,-2.30,.96,.17,.37,0xf8f5ef);
+box("หัวเตียง",.1,1.03,-2.63,1.5,.87,.13,0xc6d4d4);
+for(const x of [-.63,.83]){bar("ราวกันตก",x,.97,-1.28,.06,.1,1.27,0x9baeb8,"ราวกันตกสำหรับความปลอดภัยผู้ป่วย");}
+box("โต๊ะคร่อมเตียง",1.13,.90,-.7,.78,.07,.44,0xd2aa7c,"โต๊ะคร่อมเตียงสำหรับอาหารและของใช้ผู้พักอาศัย");
+cyl("ขาโต๊ะ",1.40,.48,-.7,.035,.035,.82,0xb6c6c9);
+box("โต๊ะข้างเตียง",-1.14,.52,-2.45,.64,.95,.6,0xd3a87d);
+box("ลิ้นชัก",-1.14,.48,-2.12,.53,.19,.05,0xf4d3ac);
+box("ตู้เครื่องมือ",1.65,.75,-2.75,.74,1.48,.55,0xe4eceb,"ตู้เก็บเวชภัณฑ์และอุปกรณ์ดูแลผู้ป่วยพิเศษ");
+box("จอมอนิเตอร์",1.65,1.7,-2.4,.58,.38,.09,0x254f63,"จอจำลองการติดตามสัญญาณชีพเพื่อการเล่นเกม");
+box("หน้าจอมอนิเตอร์",1.65,1.7,-2.34,.48,.25,.025,0x6cc3bd);
+// special care zone: observation, supplies, handwashing, IV stand and oxygen
+box("พื้นจุดพยาบาล",2.45,.025,1.22,3.1,.05,3.35,0xd3e7e3,"พื้นที่เฝ้าระวังและเตรียมอุปกรณ์การดูแล");
+box("เคาน์เตอร์พยาบาล",2.85,.58,1.58,1.8,1.06,.72,0xc99f78,"เคาน์เตอร์สำหรับจัดทำบันทึกการดูแลและตรวจสอบแผนการดูแล");
+box("ท็อปเคาน์เตอร์",2.85,1.12,1.58,1.92,.1,.83,0xf3e8d8);
+box("แท็บเล็ตบันทึก",2.85,1.22,1.5,.57,.08,.39,0x345a69,"แท็บเล็ตจำลองสำหรับบันทึกข้อมูลการดูแลผู้พักอาศัย");
+box("ตู้เวชภัณฑ์",3.65,1.17,-2.45,.74,2.28,.7,0xe8efed,"ตู้จัดเก็บอุปกรณ์การดูแล แยกจากของใช้ส่วนตัว");
+box("บานตู้เวชภัณฑ์",3.65,1.15,-2.08,.65,1.85,.04,0xb7d8d7);
+box("อ่างล้างมือเจ้าหน้าที่",3.65,.88,-.68,.85,.16,.6,0xffffff,"จุดล้างมือของเจ้าหน้าที่ก่อนและหลังการดูแล");
+box("ขาตั้งน้ำเกลือ",1.15,1.25,-2.55,.065,2.5,.065,0xa9b9c0,"ขาตั้งสารน้ำจำลองสำหรับการจัดฉาก ไม่ใช่คำแนะนำทางการแพทย์");
+bar("แขวนถุงสารน้ำ",1.15,2.42,-2.55,.6,.06,.06,0xa8b9be);
+box("ถุงสารน้ำ",1.42,2.13,-2.55,.26,.43,.13,0xe7f5f5);
+box("ฐานออกซิเจน",-.95,.57,-.35,.53,1.1,.52,0x82b7a6,"อุปกรณ์ออกซิเจนจำลองในเกม");
+cyl("ถังออกซิเจน",-1.0,1.03,-.4,.16,.16,1.4,0x9dc9bb);
+box("เครื่องดูดเสมหะจำลอง",-1.4,.52,.6,.6,.8,.48,0xc9e5e8,"เครื่องดูดเสมหะจำลอง เป็นองค์ประกอบฉากเกม");
+box("เครื่องวัดสัญญาณชีพสำรอง",1.8,1.32,-2.75,.65,.68,.24,0x7eacba,"เครื่องติดตามสัญญาณชีพสำรอง");
+box("หน้าจอสำรอง",1.8,1.38,-2.59,.49,.35,.03,0x164963);
+box("เก้าอี้ญาติ",-.9,.46,1.18,.73,.5,.73,0xcaa788,"ที่นั่งสำหรับญาติหรือผู้ดูแล");
+box("พนักเก้าอี้ญาติ",-.9,.9,1.5,.73,.78,.13,0xcaa788);
+// accessible bathroom
+box("อ่างล้างมือ",-3.82,.83,-3.1,.85,.18,.48,0xfffbf5,"อ่างล้างมือในห้องน้ำที่รองรับผู้ใช้รถเข็น");
+box("กระจก",-3.82,1.77,-3.48,.82,.86,.08,0x9bcbd4);
+box("โถสุขภัณฑ์",-2.64,.43,-2.93,.48,.58,.66,0xfffcf6,"โถสุขภัณฑ์พร้อมราวจับ");
+bar("ราวจับห้องน้ำ",-2.32,.95,-3.2,.06,.06,.67,0x9bafb8,"ราวจับเพื่อช่วยการทรงตัว");
+box("พื้นที่อาบน้ำ",-3.27,-.01,-1.96,1.55,.035,.62,0xb3d9d6);
+cyl("ฝักบัว",-3.86,1.67,-1.95,.045,.045,.72,0xb3bec5);
+sphere("หัวฝักบัว",-3.86,2.07,-1.95,.13,0xc5d5d7);
+// wheelchair and clinical accessories
+for(const z of [2.2,2.83]){cyl("ล้อรถเข็น",-3.35,.37,z,.3,.3,.07,0x3f5864);}
+box("ที่นั่งรถเข็น",-3.35,.65,2.52,.72,.13,.63,0x537e9a,"รถเข็นสำหรับเคลื่อนย้ายผู้พักอาศัย");
+box("พนักรถเข็น",-3.35,1.03,2.83,.72,.75,.11,0x5b8198);
+box("โต๊ะทำกิจกรรม",-1.0,.45,2.42,1.12,.13,.78,0xcda379,"โต๊ะสำหรับญาติและกิจกรรมดูแลประจำวัน");
+plant(-1.78,-.7,.68);plant(4.02,-2.8,.86);plant(-4.0,.65,.72);plant(.8,2.9,.62);
+for(const x of [-.1,2.6]){sphere("โคมไฟ",x,2.75,-2.65,.16,0xffdfa8);const l=new THREE.PointLight(0xffd5a2,4,4);l.position.set(x,2.6,-2.65);scene.add(l)}
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();let down=null;renderer.domElement.addEventListener("pointerdown",e=>down=[e.clientX,e.clientY]);renderer.domElement.addEventListener("pointerup",e=>{if(down&&Math.hypot(e.clientX-down[0],e.clientY-down[1])>7)return;const r=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mouse,camera);const hits=ray.intersectObjects(pick);const info=document.getElementById("info");if(hits.length){document.getElementById("it").textContent=hits[0].object.name;document.getElementById("desc").textContent=hits[0].object.userData.description;info.style.display="block"}else info.style.display="none"});
+const views={iso:[[12,11,14],[0,.7,0]],top:[[.01,19,.01],[0,0,0]],bed:[[5,6,5],[.1,.7,-1.3]],nursing:[[8,6,9],[2.4,.5,1]],bath:[[-9,7,5],[-3.3,.8,-2.6]]};
+function view(key){const p=views[key]||views.iso;camera.position.set(...p[0]);controls.target.set(...p[1]);controls.update();document.getElementById("info").style.display="none"}
+document.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x===b));view(b.dataset.view)});
+function frame(){requestAnimationFrame(frame);controls.update();renderer.render(scene,camera)}frame();addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+}catch(e){document.getElementById("error").style.display="block";console.error(e)}
+</script></body></html>
