@@ -32,5 +32,8 @@ function close(){root.classList.remove("he3d-open");document.body.style.overflow
 root.querySelector("#he3d-close").addEventListener("click",close);
 root.querySelector("#he3d-back").addEventListener("click",()=>active?open():close());
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&root.classList.contains("he3d-open")){e.preventDefault();active?open():close()}});
-window.Healthcare3DRooms={open,close,rooms:ROOMS.map(({id,title})=>({id,title}))};
+function openCampus(){previousFocus=document.activeElement;root.classList.add("he3d-open");document.body.style.overflow="hidden";active="campus";list.style.display="none";frame.style.display="block";title.textContent="🏥 Healthcare Empire · 3D Campus";frame.setAttribute("src","campus/index.html");root.querySelector("#he3d-back").focus()}
+window.addEventListener("message",e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow)return;if(e.data?.type==="healthcare:open-rooms")open()});
+root.querySelector("#he3d-back").addEventListener("click",()=>{if(active==="campus")close()});
+window.Healthcare3DRooms={open,close,openCampus,rooms:ROOMS.map(({id,title})=>({id,title}))};
 })();
