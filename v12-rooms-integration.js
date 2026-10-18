@@ -30,10 +30,10 @@ for(const room of ROOMS){const button=document.createElement("button");button.cl
 function open(id){previousFocus=document.activeElement;root.classList.add("he3d-open");document.body.style.overflow="hidden";const room=ROOMS.find(r=>r.id===id);active=room?.id||null;if(room){list.style.display="none";frame.style.display="block";title.textContent=room.icon+" "+room.title;const src="rooms/"+room.file;if(frame.getAttribute("src")!==src)frame.setAttribute("src",src)}else{frame.style.display="none";frame.removeAttribute("src");list.style.display="grid";title.textContent="🏠 ห้องพัก 3D"}root.querySelector("#he3d-back").focus()}
 function close(){root.classList.remove("he3d-open");document.body.style.overflow="";frame.removeAttribute("src");frame.style.display="none";active=null;previousFocus?.focus?.()}
 root.querySelector("#he3d-close").addEventListener("click",close);
-root.querySelector("#he3d-back").addEventListener("click",()=>active?open():close());
+root.querySelector("#he3d-back").addEventListener("click",()=>active==="campus"?close():active?open():close());
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&root.classList.contains("he3d-open")){e.preventDefault();active?open():close()}});
 function openCampus(){previousFocus=document.activeElement;root.classList.add("he3d-open");document.body.style.overflow="hidden";active="campus";list.style.display="none";frame.style.display="block";title.textContent="🏥 Healthcare Empire · 3D Campus";frame.setAttribute("src","campus/index.html");root.querySelector("#he3d-back").focus()}
 window.addEventListener("message",e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow)return;if(e.data?.type==="healthcare:open-rooms")open()});
-root.querySelector("#he3d-back").addEventListener("click",()=>{if(active==="campus")close()});
+
 window.Healthcare3DRooms={open,close,openCampus,rooms:ROOMS.map(({id,title})=>({id,title}))};
 })();
