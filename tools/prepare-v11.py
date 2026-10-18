@@ -48,6 +48,9 @@ for name in ("v12-ui.js", "v12-ui.css", "v12-rooms-integration.js"):
     "});\n",
     encoding="utf-8",
 )
+campus = ROOT / "campus"
+if campus.is_dir():
+    shutil.copytree(campus, SITE / "campus", dirs_exist_ok=True)
 rooms = ROOT / "rooms"
 if rooms.is_dir():
     shutil.copytree(rooms, SITE / "rooms", dirs_exist_ok=True)
