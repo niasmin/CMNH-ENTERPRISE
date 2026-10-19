@@ -90,7 +90,8 @@
       setMode(value) { const old = scene.mode;scene.setMode(value);if (old !== scene.mode) { updateMotionClass();invalidate(); } },
       setSuspended(value) { if (scene.suspended !== value) { scene.suspended = value;previous = 0;invalidate(); } },
       setActive(value) { active = value;if (!value && raf !== null) { cancelAnimationFrame(raf);raf = null;previous = 0; }else invalidate(); },
-      care(kind) { scene.care(kind);invalidate(); },
+      setLayout(layout) { const old=scene.layoutKey;scene.setLayout(layout);if(old!==scene.layoutKey)invalidate(); },
+      care(kind,destination) { scene.care(kind,destination);invalidate(); },
       effect(kind, options) { scene.effect(kind, options);invalidate(); },
       getState: () => ({scale, tx, ty, ready: !!frames, active, running: raf !== null, ...scene.snapshot()}),
       destroy() {

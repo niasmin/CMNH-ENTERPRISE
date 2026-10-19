@@ -12,7 +12,7 @@ with sync_playwright() as p:
  page.on('response',lambda r:missing.append(r.url) if r.status>=400 and r.url.startswith('http://127.0.0.1:8000') else None)
  page.goto(BASE_URL,wait_until='domcontentloaded');page.wait_for_function('window.HealthcareEmpireV14?.world.getState().ready')
  print('initial',page.evaluate('({valid:HealthcareCore.validate(HealthcareBridge.getState()),cash:HealthcareBridge.getState().cash})'))
- page.wait_for_function('document.querySelector(".h14-map").complete && document.querySelector(".h14-map").naturalWidth>0');page.screenshot(path=str(ARTIFACTS / 'desktop.png'))
+ page.wait_for_function('HealthcareEmpireV14.campus.getState().ready');page.screenshot(path=str(ARTIFACTS / 'desktop.png'))
  # Existing player commands must change the authoritative state.
  before=page.evaluate('HealthcareBridge.getState()');page.locator('.h14-left [data-panel="staff"]').click();page.locator('.h14-card').filter(has_text='RN พยาบาล').click()
  assert page.evaluate('HealthcareBridge.getState().staff.rn')==before['staff']['rn']+1
@@ -26,7 +26,7 @@ with sync_playwright() as p:
  saved=page.evaluate('HealthcareBridge.getState()');page.reload(wait_until='domcontentloaded');page.wait_for_function('!!window.HealthcareEmpireV14');assert page.evaluate('HealthcareBridge.getState()')==saved
  page.evaluate("HealthcareEmpireV14.open('cloud')");page.evaluate("HealthcareEmpireV14.open('finance')");assert page.locator('#he-cloud-panel').count()==1
  page.keyboard.press('Escape');assert page.locator('#h14panel').is_hidden()
- page.locator('[data-room="nursing"]').click();assert 'ห้องพยาบาล' in page.locator('#h14title').inner_text();page.keyboard.press('Escape')
+ page.locator('[data-building-id="1"]').click();assert 'หอพักผู้สูงอายุ' in page.locator('#h14title').inner_text();page.keyboard.press('Escape')
  page.set_viewport_size({'width':390,'height':844});page.screenshot(path=str(ARTIFACTS / 'mobile.png'));assert page.evaluate('document.documentElement.scrollWidth')==390
  page.locator('.h14-left [data-panel="staff"]').click();page.screenshot(path=str(ARTIFACTS / 'mobile-panel.png'));page.keyboard.press('Escape')
  page.evaluate("HealthcareEmpireV14.open('assets')");page.wait_for_function('document.querySelectorAll(".h14-gallery canvas").length>20');print('asset thumbnails',page.locator('.h14-gallery canvas').count())

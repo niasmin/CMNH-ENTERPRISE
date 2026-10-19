@@ -1,5 +1,6 @@
 # V14 — Care & Beyond
 
+> Historical version notes: the default illustrated scene has since been replaced by the [live campus correction](V17-LIVE-CAMPUS.md), which renders saved facilities and occupants. Refer there for current behavior and remaining limitations.
 The default Pages build now opens a 2D isometric care home inspired by the four user-provided references. V11 HealthcareCore and HealthcareBridge remain the only owners of the economy and player saves. Existing schema-1 saves are preserved; no database migration or reset is involved.
 
 ## Run

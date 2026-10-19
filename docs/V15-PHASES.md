@@ -1,5 +1,6 @@
 # Seven-phase visual development journey
 
+> Historical version notes: the default illustrated scene has since been replaced by the [live campus correction](V17-LIVE-CAMPUS.md), which renders saved facilities and occupants. Refer there for current behavior and remaining limitations.
 The four latest reference images extend the V14 game with a seven-stage visual roadmap. Open it from the map's journey badge, Missions, or Management. Players can browse future stages, inspect the actual requirements, and advance the existing game with upgrade, build and hire buttons. Merely viewing a stage does not unlock it, charge money or grant rewards.
 
 The image's phase numbers are visual milestones; the engine's V4–V10 chapters keep their existing economic unlocks. In particular, Villa is still V8. The page uses the core's own `perform` function to quote and validate the next action; no price, reputation threshold or balance is replaced.

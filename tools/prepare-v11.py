@@ -3,6 +3,8 @@
 from pathlib import Path
 from zipfile import ZipFile
 import shutil
+import re
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / "releases/Healthcare_Empire_V11_Mobile_Beta_Cloudflare.zip"
@@ -33,13 +35,19 @@ if not (SITE / "index.html").is_file():
 # Supabase Auth + game_saves directly instead, without a service-role key.
 html = (SITE / "index.html").read_text(encoding="utf-8")
 html = html.replace('<script defer src="auth-cloud.js"></script>', '')
+html, engine_count = re.subn(
+    r'<script>/\* Healthcare Empire V4-V10:.*?</script>',
+    '<script src="healthcare-core.js"></script>', html, count=1, flags=re.S,
+)
+if engine_count != 1:
+    raise SystemExit("V11 archive engine block not found; refusing to build with inconsistent game rules")
 html = html.replace(
     "</body></html>",
-    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script><script defer src="v12-rooms-integration.js"></script><link rel="stylesheet" href="v13-tycoon.css"><script defer src="v13-tycoon.js"></script><link rel="stylesheet" href="v14-care-empire.css"><script defer src="v14-assets.js"></script><link rel="stylesheet" href="v16-animation.css"><script defer src="v16-animation.js"></script><script defer src="v14-world.js"></script><link rel="stylesheet" href="v15-phases.css"><script defer src="v15-phases.js"></script><script defer src="v14-care-empire.js"></script></body></html>'
+    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script><script defer src="v12-rooms-integration.js"></script><link rel="stylesheet" href="v13-tycoon.css"><script defer src="v13-tycoon.js"></script><link rel="stylesheet" href="v14-care-empire.css"><script defer src="v14-assets.js"></script><link rel="stylesheet" href="v16-animation.css"><script defer src="v16-animation.js"></script><script defer src="v14-world.js"></script><link rel="stylesheet" href="v15-phases.css"><script defer src="v15-phases.js"></script><link rel="stylesheet" href="v17-campus.css"><script defer src="v17-campus.js"></script><script defer src="v14-care-empire.js"></script></body></html>'
 )
 (SITE / "index.html").write_text(html, encoding="utf-8")
 (SITE / "v11-supabase-save.js").write_bytes((ROOT / "v11-supabase-save.js").read_bytes())
-for name in ("v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css", "v14-care-empire.css", "v14-assets.js", "v14-world.js", "v14-care-empire.js", "v15-phases.css", "v15-phases.js", "v16-animation.js", "v16-animation.css"):
+for name in ("healthcare-core.js", "v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css", "v14-care-empire.css", "v14-assets.js", "v14-world.js", "v14-care-empire.js", "v15-phases.css", "v15-phases.js", "v16-animation.js", "v16-animation.css", "v17-campus.js", "v17-campus.css"):
     (SITE / name).write_bytes((ROOT / name).read_bytes())
 (SITE / "cloud-config.js").write_text(
     "window.HE_CLOUD_CONFIG = Object.freeze({"
@@ -57,5 +65,17 @@ if campus.is_dir():
 rooms = ROOT / "rooms"
 if rooms.is_dir():
     shutil.copytree(rooms, SITE / "rooms", dirs_exist_ok=True)
+# Version script/style URLs together so a refreshed page cannot mix cached revisions.
+def version_local_asset(match):
+    filename = match.group(2)
+    file = SITE / filename
+    if not file.is_file():
+        return match.group(0)
+    digest = hashlib.sha256(file.read_bytes()).hexdigest()[:12]
+    return match.group(1) + filename + "?v=" + digest + match.group(3)
+
+html = (SITE / "index.html").read_text(encoding="utf-8")
+html = re.sub(r"((?:src|href)=[\"'])([^\"'?#]+\.(?:js|css))([\"'])", version_local_asset, html)
+(SITE / "index.html").write_text(html, encoding="utf-8")
 (SITE / ".nojekyll").write_text("", encoding="utf-8")
 print("V11 ready:", len(list(SITE.rglob("*"))), "entries")

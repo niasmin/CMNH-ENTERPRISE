@@ -9,6 +9,7 @@
   class Scene {
     constructor() {
       this.actors = [];
+      this.route = ROUTE;this.targets = TARGETS;this.fountain = [297,584];this.layoutKey = '';
       this.effects = [];
       this.clock = 0;
       this.mode = 'full';
@@ -27,9 +28,15 @@
       count = clamp(Math.floor(Number(count) || 0), 0, 12);
       this.actors.length = Math.min(this.actors.length, count);
       while (this.actors.length < count) {
-        const id = this.actors.length, segment = id % ROUTE.length, origin = ROUTE[segment];
-        this.actors.push({id, x: origin[0], y: origin[1], target: (segment + 1) % ROUTE.length, direction: 'southeast', state: 'idle', action: 'idle', frame: 0, frameClock: 0, wait: id * .3, task: null});
+        const id = this.actors.length, segment = id % this.route.length, origin = this.route[segment];
+        this.actors.push({id, x: origin[0], y: origin[1], target: (segment + 1) % this.route.length, direction: 'southeast', state: 'idle', action: 'idle', frame: 0, frameClock: 0, wait: id * .3, task: null});
       }
+    }
+    setLayout(layout) {
+      const key=JSON.stringify(layout);if(key===this.layoutKey)return;const first=!this.layoutKey;this.layoutKey=key;
+      this.route=layout.route;this.targets=layout.targets;this.fountain=layout.fountain;
+      for(const actor of this.actors){let nearest=0;for(let i=1;i<this.route.length;i++)if(Math.hypot(actor.x-this.route[i][0],actor.y-this.route[i][1])<Math.hypot(actor.x-this.route[nearest][0],actor.y-this.route[nearest][1]))nearest=i;
+        if(first){const p=this.route[actor.id%this.route.length];actor.x=p[0];actor.y=p[1];nearest=actor.id%this.route.length;}actor.target=(nearest+1)%this.route.length;}
     }
     effect(kind, {x = 768, y = 500, label = ''} = {}) {
       if (this.effectiveMode !== 'full') return;
@@ -37,9 +44,9 @@
       // Bound transient work, including rapid clicks in management panels.
       if (this.effects.length > 24) this.effects.splice(0, this.effects.length - 24);
     }
-    care(kind = 'care') {
+    care(kind = 'care', destination = null) {
       if (this.effectiveMode !== 'full') return;
-      const target = TARGETS[kind] || TARGETS.care;
+      const target = Array.isArray(destination)&&destination.length===2&&destination.every(Number.isFinite)?destination:(this.targets[kind] || this.targets.care);
       const available = this.actors.filter(actor => !actor.task);
       available.sort((a, b) => Math.hypot(a.x - target[0], a.y - target[1]) - Math.hypot(b.x - target[0], b.y - target[1]));
       const actor = available[0];
@@ -88,8 +95,8 @@
           actor.wait = Math.max(0, actor.wait - dt * this.speed);
           if (!actor.wait) {
             actor.state = 'walking';actor.action = this.speed >= 4 ? 'run' : 'walk';
-            if (this.move(actor, ROUTE[actor.target], dt * 42 * this.speed)) {
-              actor.target = (actor.target + 1) % ROUTE.length;actor.wait = 1.3 + actor.id * .12;actor.state = 'idle';actor.action = 'idle';
+            if (this.move(actor, this.route[actor.target], dt * 42 * this.speed)) {
+              actor.target = (actor.target + 1) % this.route.length;actor.wait = 1.3 + actor.id * .12;actor.state = 'idle';actor.action = 'idle';
             }
           }
         } else actor.state = 'idle';
@@ -118,17 +125,17 @@
       if (this.effectiveMode === 'full') for (const effect of this.effects) this.drawEffect(ctx, effect);
     }
     drawAmbient(ctx) {
-      const t = this.clock;
+      const t = this.clock, fountain=this.fountain||[-100,-100];
       ctx.save();
       // The fountain is an overlay on the illustrated background, not fluid simulation.
       ctx.strokeStyle = '#c5f5ff99';ctx.lineWidth = 1.8;
       for (let i = 0; i < 3; i++) {
         const phase = (t * .45 + i / 3) % 1;
-        ctx.globalAlpha = (1 - phase) * .65;ctx.beginPath();ctx.ellipse(297, 584, 5 + phase * 20, 2 + phase * 7, 0, 0, Math.PI * 2);ctx.stroke();
+        ctx.globalAlpha = (1 - phase) * .65;ctx.beginPath();ctx.ellipse(fountain[0], fountain[1], 5 + phase * 20, 2 + phase * 7, 0, 0, Math.PI * 2);ctx.stroke();
       }
       ctx.globalAlpha = .8;ctx.fillStyle = '#dcfaff';
       for (let i = 0; i < 6; i++) {
-        const phase = (t * .8 + i / 6) % 1, x = 297 + Math.sin(i * 2.4) * phase * 15, y = 576 - Math.sin(phase * Math.PI) * 23;
+        const phase = (t * .8 + i / 6) % 1, x = fountain[0] + Math.sin(i * 2.4) * phase * 15, y = fountain[1] - 8 - Math.sin(phase * Math.PI) * 23;
         ctx.beginPath();ctx.ellipse(x, y, 1.3, 2, 0, 0, Math.PI * 2);ctx.fill();
       }
       ctx.fillStyle = '#eddf9a';
@@ -157,7 +164,7 @@
       ctx.restore();
     }
     snapshot() {
-      return {mode: this.mode, effectiveMode: this.effectiveMode, paused: this.paused, suspended: this.suspended, clock: this.clock, speed: this.speed, effectCount: this.effects.length, agents: this.actors.map(({id, x, y, direction, state, action, frame}) => ({id, x, y, direction, state, action, frame}))};
+      return {mode: this.mode, effectiveMode: this.effectiveMode, paused: this.paused, suspended: this.suspended, clock: this.clock, speed: this.speed, effectCount: this.effects.length, agents: this.actors.map(({id, x, y, direction, state, action, frame, task}) => ({id, x, y, direction, state, action, frame, task:task?{kind:task.kind,destination:[...task.destination]}:null}))};
     }
   }
   window.HealthcareAnimation = {Scene};

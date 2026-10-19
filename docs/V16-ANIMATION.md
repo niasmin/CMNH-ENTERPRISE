@@ -1,5 +1,6 @@
 # Animation system
 
+> Historical version notes: the default illustrated scene has since been replaced by the [live campus correction](V17-LIVE-CAMPUS.md), which renders saved facilities and occupants. Refer there for current behavior and remaining limitations.
 The existing 2D isometric map now uses a presentation-only animation scene. No game economy, medical outcome, save schema or engine unlock is changed.
 
 ## Controls
