@@ -28,3 +28,20 @@ GitHub Actions แตก ZIP ลง `site/`, แทนที่การเช�
 - Save ยังเป็นการกดบันทึกเอง ไม่ใช่ auto-save; การบันทึกพร้อมกันจากสองเครื่องยังไม่มี conflict resolution
 - ภาพ V11 และการทำงานบน iPhone/Android ยังไม่ผ่านการทดสอบจริง
 - การตั้งค่า Supabase Auth Redirect URL ต้องทำใน Dashboard ก่อนใช้งาน Magic Link
+
+## V14 — Care & Beyond
+
+เพิ่มหน้าเกมไอโซเมตริกตามภาพอ้างอิง พร้อมเมนูบริหารที่ใช้ข้อมูลเกมเดิม แผนที่เลื่อน/ซูมได้ ตัวละครพยาบาลเคลื่อนไหว และคลังภาพ 68 รายการ
+
+```sh
+python3 tools/prepare-v11.py
+python3 -m http.server 8000 --bind 127.0.0.1 --directory site
+```
+
+ZIP V11 มีอยู่ใน repository แล้ว คำแนะนำด้านบนที่ระบุว่ายังรอ ZIP เป็นข้อมูลเก่า ใช้ `site/` ที่สร้างด้วยคำสั่งข้างต้นสำหรับเล่น V14
+
+ดู [วิธีเล่น โครงสร้างภาพ และข้อจำกัด V14](docs/V14-CARE-AND-BEYOND.md) สำหรับรายละเอียด แผนที่เป็นภาพประกอบ ตัวละครใช้ท่าจาก JPEG อ้างอิง ยังไม่ใช่ rig หรือชุดภาพโปร่งใสสมบูรณ์
+
+## เส้นทางพัฒนา 7 ระยะ
+
+เพิ่มหน้าดูเป้าหมายตั้งแต่ First Care Home, Professional Nursing Center, Tranquila, Home Care & Daycare, Healthcare Workforce, Neuro Hospital ถึง Healthcare Empire พร้อมภาพจากชุดใหม่ ปุ่มพัฒนา/สร้าง/จ้างใช้กติกาเดิม ดู [เงื่อนไขและการทดสอบ](docs/V15-PHASES.md)

@@ -1,0 +1,866 @@
+{
+  "version": 1,
+  "provenance": "User supplied reference JPEGs; retained byte-for-byte. License/ownership has not been independently verified; no third-party redistribution license is asserted.",
+  "assets": [
+    {
+      "id": "ward",
+      "source": "references/pack.jpg",
+      "rect": [
+        0,
+        218,
+        222,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "villa",
+      "source": "references/pack.jpg",
+      "rect": [
+        225,
+        218,
+        220,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "hospital",
+      "source": "references/pack.jpg",
+      "rect": [
+        448,
+        218,
+        216,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "homecare",
+      "source": "references/pack.jpg",
+      "rect": [
+        670,
+        218,
+        195,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "branch",
+      "source": "references/pack.jpg",
+      "rect": [
+        859,
+        218,
+        205,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "lab",
+      "source": "references/pack.jpg",
+      "rect": [
+        1067,
+        218,
+        210,
+        194
+      ],
+      "kind": "building"
+    },
+    {
+      "id": "room-standard",
+      "source": "references/pack.jpg",
+      "rect": [
+        8,
+        418,
+        155,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-vip",
+      "source": "references/pack.jpg",
+      "rect": [
+        165,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-feeding",
+      "source": "references/pack.jpg",
+      "rect": [
+        325,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-therapy",
+      "source": "references/pack.jpg",
+      "rect": [
+        482,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-activity",
+      "source": "references/pack.jpg",
+      "rect": [
+        640,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-dining",
+      "source": "references/pack.jpg",
+      "rect": [
+        800,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-nursing",
+      "source": "references/pack.jpg",
+      "rect": [
+        960,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "room-clinic",
+      "source": "references/pack.jpg",
+      "rect": [
+        1120,
+        418,
+        156,
+        164
+      ],
+      "kind": "room"
+    },
+    {
+      "id": "tree",
+      "source": "references/pack.jpg",
+      "rect": [
+        8,
+        700,
+        88,
+        90
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "flowers",
+      "source": "references/pack.jpg",
+      "rect": [
+        185,
+        700,
+        88,
+        90
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "fountain",
+      "source": "references/pack.jpg",
+      "rect": [
+        375,
+        700,
+        112,
+        90
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "gazebo",
+      "source": "references/pack.jpg",
+      "rect": [
+        590,
+        700,
+        88,
+        90
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "bench",
+      "source": "references/pack.jpg",
+      "rect": [
+        790,
+        700,
+        87,
+        90
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "ceo",
+      "source": "references/pack.jpg",
+      "rect": [
+        14,
+        0,
+        112,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "manager",
+      "source": "references/pack.jpg",
+      "rect": [
+        126,
+        0,
+        106,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "doctor",
+      "source": "references/pack.jpg",
+      "rect": [
+        234,
+        0,
+        96,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "rn",
+      "source": "references/pack.jpg",
+      "rect": [
+        333,
+        0,
+        93,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "caregiver",
+      "source": "references/pack.jpg",
+      "rect": [
+        429,
+        0,
+        92,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "pt",
+      "source": "references/pack.jpg",
+      "rect": [
+        522,
+        0,
+        87,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "kitchen",
+      "source": "references/pack.jpg",
+      "rect": [
+        611,
+        0,
+        90,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "admin",
+      "source": "references/pack.jpg",
+      "rect": [
+        703,
+        0,
+        85,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "resident-male",
+      "source": "references/pack.jpg",
+      "rect": [
+        789,
+        0,
+        88,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "resident-female",
+      "source": "references/pack.jpg",
+      "rect": [
+        879,
+        0,
+        71,
+        194
+      ],
+      "kind": "character"
+    },
+    {
+      "id": "bed",
+      "source": "references/pack.jpg",
+      "rect": [
+        3,
+        581,
+        113,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "wheelchair",
+      "source": "references/pack.jpg",
+      "rect": [
+        118,
+        581,
+        66,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "iv-stand",
+      "source": "references/pack.jpg",
+      "rect": [
+        184,
+        581,
+        69,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "monitor",
+      "source": "references/pack.jpg",
+      "rect": [
+        256,
+        581,
+        74,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "patient-lift",
+      "source": "references/pack.jpg",
+      "rect": [
+        333,
+        581,
+        71,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "walker",
+      "source": "references/pack.jpg",
+      "rect": [
+        408,
+        581,
+        69,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "parallel-bars",
+      "source": "references/pack.jpg",
+      "rect": [
+        477,
+        581,
+        94,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "therapy-ball",
+      "source": "references/pack.jpg",
+      "rect": [
+        573,
+        581,
+        74,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "dumbbells",
+      "source": "references/pack.jpg",
+      "rect": [
+        649,
+        581,
+        69,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "therapy-table",
+      "source": "references/pack.jpg",
+      "rect": [
+        722,
+        581,
+        99,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "medical-cart",
+      "source": "references/pack.jpg",
+      "rect": [
+        874,
+        581,
+        75,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "medicine-cabinet",
+      "source": "references/pack.jpg",
+      "rect": [
+        952,
+        581,
+        83,
+        116
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-1",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        0,
+        82,
+        318,
+        220
+      ],
+      "kind": "phase",
+      "label": "ระยะ 1"
+    },
+    {
+      "id": "phase-2",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        322,
+        82,
+        316,
+        220
+      ],
+      "kind": "phase",
+      "label": "ระยะ 2"
+    },
+    {
+      "id": "phase-3",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        642,
+        82,
+        316,
+        220
+      ],
+      "kind": "phase",
+      "label": "ระยะ 3"
+    },
+    {
+      "id": "phase-4",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        963,
+        82,
+        317,
+        220
+      ],
+      "kind": "phase",
+      "label": "ระยะ 4"
+    },
+    {
+      "id": "phase-5",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        0,
+        510,
+        369,
+        200
+      ],
+      "kind": "phase",
+      "label": "ระยะ 5"
+    },
+    {
+      "id": "phase-6",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        375,
+        510,
+        421,
+        200
+      ],
+      "kind": "phase",
+      "label": "ระยะ 6"
+    },
+    {
+      "id": "phase-7",
+      "source": "references/phases-detail.jpg",
+      "rect": [
+        802,
+        510,
+        478,
+        200
+      ],
+      "kind": "phase",
+      "label": "ระยะ 7"
+    },
+    {
+      "id": "phase-standard",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        8,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้องผู้ป่วยทั่วไป"
+    },
+    {
+      "id": "phase-vip",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        149,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้อง VIP"
+    },
+    {
+      "id": "phase-feeding",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        290,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้อง NG/PEG"
+    },
+    {
+      "id": "phase-tracheostomy",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        431,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้อง Tracheostomy"
+    },
+    {
+      "id": "phase-therapy",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        572,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้องกายภาพบำบัด"
+    },
+    {
+      "id": "phase-activity",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        713,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้องกิจกรรม"
+    },
+    {
+      "id": "phase-dining",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        854,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "ห้องอาหาร"
+    },
+    {
+      "id": "phase-nursing",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        995,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "Nurse Station"
+    },
+    {
+      "id": "phase-opd",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        1136,
+        572,
+        138,
+        91
+      ],
+      "kind": "room",
+      "label": "คลินิก OPD"
+    },
+    {
+      "id": "phase-garden",
+      "label": "สวนส่วนกลาง",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        0,
+        700,
+        150,
+        120
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-gazebo",
+      "label": "มุมพักผ่อน",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        154,
+        700,
+        167,
+        120
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-trees",
+      "label": "ทางเดินและสวน",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        324,
+        700,
+        103,
+        120
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-parking",
+      "label": "ลานจอดรถ",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        430,
+        700,
+        129,
+        120
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-sign",
+      "label": "ป้ายทางเข้า",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        565,
+        700,
+        238,
+        120
+      ],
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-ambulance",
+      "label": "รถพยาบาล",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        808,
+        710,
+        82,
+        55
+      ],
+      "kind": "vehicle"
+    },
+    {
+      "id": "phase-home-van",
+      "label": "รถ Home Care",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        892,
+        710,
+        87,
+        55
+      ],
+      "kind": "vehicle"
+    },
+    {
+      "id": "phase-bed",
+      "label": "รถเข็นผู้ป่วย",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        980,
+        710,
+        88,
+        55
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-monitor",
+      "label": "เครื่องติดตามสัญญาณชีพ",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        1070,
+        701,
+        53,
+        82
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-oxygen",
+      "label": "เครื่องออกซิเจน",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        1128,
+        701,
+        60,
+        82
+      ],
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-physio",
+      "label": "อุปกรณ์กายภาพ",
+      "source": "references/phases-atlas.jpg",
+      "rect": [
+        1191,
+        701,
+        88,
+        82
+      ],
+      "kind": "equipment"
+    }
+  ],
+  "nurse": {
+    "source": "references/nurse.jpg",
+    "frameSize": [
+      34,
+      72
+    ],
+    "rows": {
+      "idle": 70,
+      "walk": 145,
+      "run": 220,
+      "use": 302
+    },
+    "directions": {
+      "south": [
+        240,
+        274
+      ],
+      "southeast": [
+        348,
+        389
+      ],
+      "east": [
+        433,
+        478
+      ],
+      "northeast": [
+        510,
+        543
+      ],
+      "north": [
+        600,
+        600
+      ],
+      "northwest": [
+        661,
+        697
+      ],
+      "west": [
+        733,
+        783
+      ],
+      "southwest": [
+        831,
+        865
+      ]
+    },
+    "note": "Illustrative reference poses: one or two sampled frames per direction, not the 320-frame production rig described in the image. Runtime edge-connected white matte removal is approximate."
+  },
+  "sources": [
+    {
+      "file": "references/catalog.jpg",
+      "sha256": "3180f62352a4d0c0855ffc70646fca3a04c93d7f0514ee2dbeb4dbf4b0318eb6"
+    },
+    {
+      "file": "references/map.jpg",
+      "sha256": "cbf2e7b3ff55ec314da337dcd9943acde045fab7fd4e49641e2fa8dc57d66267"
+    },
+    {
+      "file": "references/nurse.jpg",
+      "sha256": "ffccdb33339e16e7e43f461bb6742af22385d623e07f910b9a50cb68be421a9a"
+    },
+    {
+      "file": "references/pack.jpg",
+      "sha256": "489d873a40116a1da5a8ba0985d5038a4e7e7c66b9180fbe67df794155ce61bb"
+    },
+    {
+      "file": "references/phases-atlas.jpg",
+      "sha256": "e9416352e0a499de9c98e4641843401536b128f7ab5db9cab22cb4420fd17a23"
+    },
+    {
+      "file": "references/phases-detail.jpg",
+      "sha256": "a6c5cbba66039404e418ecf03f9525c6864ac9e52972182d68afacfb9af26511"
+    },
+    {
+      "file": "references/phases-overview.jpg",
+      "sha256": "f3abc4c0e4175e9982b592f506a80121a97a0b0b448831d459de86e847e77691"
+    }
+  ],
+  "generatedMap": {
+    "file": "campus-map.png",
+    "sha256": "889d824d4418e5363930eae5151682838f8bec5e7ee641919d7cadfa1e848571",
+    "source": "references/map.jpg",
+    "tool": "image_gen",
+    "description": "UI removed and scenery inpainted from the user map reference; illustrative static background."
+  }
+}

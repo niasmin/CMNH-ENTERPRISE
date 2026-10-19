@@ -35,11 +35,11 @@ html = (SITE / "index.html").read_text(encoding="utf-8")
 html = html.replace('<script defer src="auth-cloud.js"></script>', '')
 html = html.replace(
     "</body></html>",
-    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script><script defer src="v12-rooms-integration.js"></script><link rel="stylesheet" href="v13-tycoon.css"><script defer src="v13-tycoon.js"></script></body></html>'
+    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script><script defer src="v12-rooms-integration.js"></script><link rel="stylesheet" href="v13-tycoon.css"><script defer src="v13-tycoon.js"></script><link rel="stylesheet" href="v14-care-empire.css"><script defer src="v14-assets.js"></script><script defer src="v14-world.js"></script><link rel="stylesheet" href="v15-phases.css"><script defer src="v15-phases.js"></script><script defer src="v14-care-empire.js"></script></body></html>'
 )
 (SITE / "index.html").write_text(html, encoding="utf-8")
 (SITE / "v11-supabase-save.js").write_bytes((ROOT / "v11-supabase-save.js").read_bytes())
-for name in ("v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css"):
+for name in ("v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css", "v14-care-empire.css", "v14-assets.js", "v14-world.js", "v14-care-empire.js", "v15-phases.css", "v15-phases.js"):
     (SITE / name).write_bytes((ROOT / name).read_bytes())
 (SITE / "cloud-config.js").write_text(
     "window.HE_CLOUD_CONFIG = Object.freeze({"
@@ -48,6 +48,9 @@ for name in ("v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.
     "});\n",
     encoding="utf-8",
 )
+assets = ROOT / "assets"
+if assets.is_dir():
+    shutil.copytree(assets, SITE / "assets", dirs_exist_ok=True)
 campus = ROOT / "campus"
 if campus.is_dir():
     shutil.copytree(campus, SITE / "campus", dirs_exist_ok=True)
