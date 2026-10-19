@@ -5,7 +5,7 @@ BASE_URL = os.environ.get("CMNH_TEST_URL", "http://127.0.0.1:8000/")
 ARTIFACTS = Path(os.environ.get("CMNH_TEST_ARTIFACTS", "/tmp/cmnh-v14-tests"))
 ARTIFACTS.mkdir(parents=True, exist_ok=True)
 with sync_playwright() as p:
- browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+ browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader'])
  page=browser.new_page(viewport={'width':1280,'height':853},device_scale_factor=1)
  errors=[];missing=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
@@ -19,7 +19,7 @@ with sync_playwright() as p:
  page.locator('#h14close').click();page.locator('.h14-left [data-panel="build"]').click();page.locator('.h14-card').filter(has_text='หอพักผู้สูงอายุ').click();assert page.evaluate('HealthcareBridge.getState().buildings.length')==len(before['buildings'])+1
  page.locator('#h14close').click();page.locator('.h14-bottom [data-panel="residents"]').click();page.locator('.h14-card').filter(has_text='รับผู้พักอาศัยใหม่').click();assert page.evaluate('HealthcareBridge.getState().residents')==before['residents']+1
  page.locator('#h14close').click();page.locator('#h14zoomIn').click();assert float(page.locator('#h14view').get_attribute('data-zoom'))>1;page.locator('#h14reset').click()
- page.locator('.h14-left [data-panel="decorate"]').click();page.locator('.h14-card').filter(has_text='ต้นไม้').click();page.mouse.click(770,580);page.wait_for_selector('.h14-decoration');assert page.evaluate('HealthcareBridge.getState().settings.decorations.length')==1
+ page.locator('.h14-left [data-panel="decorate"]').click();page.locator('.h14-card').filter(has_text='ต้นไม้').click();page.mouse.click(770,580);page.wait_for_function('HealthcareEmpireV14.world.getState().decorationCount===1');assert page.evaluate('HealthcareBridge.getState().settings.decorations.length')==1
  page.locator('#h14play').click();page.wait_for_timeout(400);a=page.evaluate('HealthcareEmpireV14.world.getState().agents');page.wait_for_timeout(500);b=page.evaluate('HealthcareEmpireV14.world.getState().agents');assert a!=b
  page.locator('#h14play').click();h=page.evaluate('HealthcareBridge.getState().hour');page.locator('#h14step').click();assert page.evaluate('HealthcareBridge.getState().hour')==(h+1)%24
  # Persistence and tab/dialog behaviors.

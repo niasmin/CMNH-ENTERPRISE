@@ -21,6 +21,8 @@ on:
       - 'v16-*.css'
       - 'v17-*.js'
       - 'v17-*.css'
+      - 'v18-*.js'
+      - 'v18-*.css'
       - 'assets/**'
       - 'rooms/**'
       - 'campus/**'

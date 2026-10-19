@@ -7,7 +7,7 @@ url = os.environ.get('CMNH_TEST_URL', 'http://127.0.0.1:8000/')
 artifacts = Path(os.environ.get('CMNH_TEST_ARTIFACTS', '/tmp/cmnh-phase-tests'))
 artifacts.mkdir(parents=True, exist_ok=True)
 with sync_playwright() as p:
-    browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox', '--disable-dev-shm-usage'])
+    browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox', '--disable-dev-shm-usage','--enable-unsafe-swiftshader'])
     page = browser.new_page(viewport={'width':1280,'height':853})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))

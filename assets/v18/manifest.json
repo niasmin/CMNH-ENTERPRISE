@@ -1,0 +1,387 @@
+{
+  "version": 18,
+  "style": "warm-low-poly-3d",
+  "source": "Newly authored procedural meshes in v18-models.js; no legacy image crops are rendered.",
+  "assets": [
+    {
+      "id": "ward",
+      "kind": "building",
+      "label": "หอพักผู้สูงอายุ"
+    },
+    {
+      "id": "villa",
+      "kind": "building",
+      "label": "วิลล่าพรีเมียม"
+    },
+    {
+      "id": "hospital",
+      "kind": "building",
+      "label": "โรงพยาบาล"
+    },
+    {
+      "id": "homecare",
+      "kind": "building",
+      "label": "ศูนย์ Home Care"
+    },
+    {
+      "id": "branch",
+      "kind": "building",
+      "label": "ศูนย์สาขา"
+    },
+    {
+      "id": "lab",
+      "kind": "building",
+      "label": "ศูนย์วิจัย"
+    },
+    {
+      "id": "room-standard",
+      "kind": "room",
+      "label": "ห้องพักมาตรฐาน"
+    },
+    {
+      "id": "room-vip",
+      "kind": "room",
+      "label": "ห้องพัก VIP"
+    },
+    {
+      "id": "room-feeding",
+      "kind": "room",
+      "label": "ห้องดูแลเฉพาะทาง"
+    },
+    {
+      "id": "room-therapy",
+      "kind": "room",
+      "label": "ห้องกายภาพ"
+    },
+    {
+      "id": "room-activity",
+      "kind": "room",
+      "label": "ห้องกิจกรรม"
+    },
+    {
+      "id": "room-dining",
+      "kind": "room",
+      "label": "ห้องอาหาร"
+    },
+    {
+      "id": "room-nursing",
+      "kind": "room",
+      "label": "ห้องพยาบาล"
+    },
+    {
+      "id": "room-clinic",
+      "kind": "room",
+      "label": "ห้องตรวจ"
+    },
+    {
+      "id": "tree",
+      "kind": "decoration",
+      "label": "ต้นไม้"
+    },
+    {
+      "id": "flowers",
+      "kind": "decoration",
+      "label": "แปลงดอกไม้"
+    },
+    {
+      "id": "fountain",
+      "kind": "decoration",
+      "label": "น้ำพุ"
+    },
+    {
+      "id": "gazebo",
+      "kind": "decoration",
+      "label": "ศาลาพักผ่อน"
+    },
+    {
+      "id": "bench",
+      "kind": "decoration",
+      "label": "ม้านั่ง"
+    },
+    {
+      "id": "ceo",
+      "kind": "character",
+      "label": "ผู้บริหาร"
+    },
+    {
+      "id": "manager",
+      "kind": "character",
+      "label": "ผู้จัดการ"
+    },
+    {
+      "id": "doctor",
+      "kind": "character",
+      "label": "แพทย์"
+    },
+    {
+      "id": "rn",
+      "kind": "character",
+      "label": "พยาบาล RN"
+    },
+    {
+      "id": "caregiver",
+      "kind": "character",
+      "label": "ผู้ดูแล"
+    },
+    {
+      "id": "pt",
+      "kind": "character",
+      "label": "นักกายภาพ"
+    },
+    {
+      "id": "kitchen",
+      "kind": "character",
+      "label": "ทีมครัว"
+    },
+    {
+      "id": "admin",
+      "kind": "character",
+      "label": "ฝ่ายบริหาร"
+    },
+    {
+      "id": "resident-male",
+      "kind": "character",
+      "label": "ผู้สูงอายุชาย"
+    },
+    {
+      "id": "resident-female",
+      "kind": "character",
+      "label": "ผู้สูงอายุหญิง"
+    },
+    {
+      "id": "bed",
+      "kind": "equipment",
+      "label": "เตียงผู้ป่วย"
+    },
+    {
+      "id": "wheelchair",
+      "kind": "equipment",
+      "label": "รถเข็น"
+    },
+    {
+      "id": "iv-stand",
+      "kind": "equipment",
+      "label": "เสาน้ำเกลือ"
+    },
+    {
+      "id": "monitor",
+      "kind": "equipment",
+      "label": "เครื่องติดตามสัญญาณ"
+    },
+    {
+      "id": "patient-lift",
+      "kind": "equipment",
+      "label": "เครื่องช่วยยก"
+    },
+    {
+      "id": "walker",
+      "kind": "equipment",
+      "label": "ราวฝึกเดิน"
+    },
+    {
+      "id": "parallel-bars",
+      "kind": "equipment",
+      "label": "ราวกายภาพ"
+    },
+    {
+      "id": "therapy-ball",
+      "kind": "equipment",
+      "label": "ลูกบอลและเสื่อ"
+    },
+    {
+      "id": "dumbbells",
+      "kind": "equipment",
+      "label": "ดัมเบล"
+    },
+    {
+      "id": "therapy-table",
+      "kind": "equipment",
+      "label": "เตียงกายภาพ"
+    },
+    {
+      "id": "medical-cart",
+      "kind": "equipment",
+      "label": "รถเข็นอุปกรณ์"
+    },
+    {
+      "id": "medicine-cabinet",
+      "kind": "equipment",
+      "label": "ตู้เวชภัณฑ์"
+    },
+    {
+      "id": "phase-1",
+      "kind": "phase",
+      "label": "ระยะ 1"
+    },
+    {
+      "id": "phase-2",
+      "kind": "phase",
+      "label": "ระยะ 2"
+    },
+    {
+      "id": "phase-3",
+      "kind": "phase",
+      "label": "ระยะ 3"
+    },
+    {
+      "id": "phase-4",
+      "kind": "phase",
+      "label": "ระยะ 4"
+    },
+    {
+      "id": "phase-5",
+      "kind": "phase",
+      "label": "ระยะ 5"
+    },
+    {
+      "id": "phase-6",
+      "kind": "phase",
+      "label": "ระยะ 6"
+    },
+    {
+      "id": "phase-7",
+      "kind": "phase",
+      "label": "ระยะ 7"
+    },
+    {
+      "id": "phase-standard",
+      "kind": "room",
+      "label": "ห้องผู้ป่วยทั่วไป"
+    },
+    {
+      "id": "phase-vip",
+      "kind": "room",
+      "label": "ห้อง VIP"
+    },
+    {
+      "id": "phase-feeding",
+      "kind": "room",
+      "label": "ห้อง NG/PEG"
+    },
+    {
+      "id": "phase-tracheostomy",
+      "kind": "room",
+      "label": "ห้อง Tracheostomy"
+    },
+    {
+      "id": "phase-therapy",
+      "kind": "room",
+      "label": "ห้องกายภาพบำบัด"
+    },
+    {
+      "id": "phase-activity",
+      "kind": "room",
+      "label": "ห้องกิจกรรม"
+    },
+    {
+      "id": "phase-dining",
+      "kind": "room",
+      "label": "ห้องอาหาร"
+    },
+    {
+      "id": "phase-nursing",
+      "kind": "room",
+      "label": "Nurse Station"
+    },
+    {
+      "id": "phase-opd",
+      "kind": "room",
+      "label": "คลินิก OPD"
+    },
+    {
+      "id": "phase-garden",
+      "label": "สวนส่วนกลาง",
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-gazebo",
+      "label": "มุมพักผ่อน",
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-trees",
+      "label": "ทางเดินและสวน",
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-parking",
+      "label": "ลานจอดรถ",
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-sign",
+      "label": "ป้ายทางเข้า",
+      "kind": "decoration"
+    },
+    {
+      "id": "phase-ambulance",
+      "label": "รถพยาบาล",
+      "kind": "vehicle"
+    },
+    {
+      "id": "phase-home-van",
+      "label": "รถ Home Care",
+      "kind": "vehicle"
+    },
+    {
+      "id": "phase-bed",
+      "label": "รถเข็นผู้ป่วย",
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-monitor",
+      "label": "เครื่องติดตามสัญญาณชีพ",
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-oxygen",
+      "label": "เครื่องออกซิเจน",
+      "kind": "equipment"
+    },
+    {
+      "id": "phase-physio",
+      "label": "อุปกรณ์กายภาพ",
+      "kind": "equipment"
+    },
+    {
+      "id": "pn",
+      "kind": "character",
+      "label": "พยาบาล PN"
+    },
+    {
+      "id": "ot",
+      "kind": "character",
+      "label": "นักกิจกรรมบำบัด"
+    },
+    {
+      "id": "therapy",
+      "label": "ศูนย์กายภาพ",
+      "kind": "building"
+    },
+    {
+      "id": "activity",
+      "label": "ห้องกิจกรรม",
+      "kind": "building"
+    },
+    {
+      "id": "garden",
+      "label": "สวนพักผ่อน",
+      "kind": "building"
+    },
+    {
+      "id": "headquarters",
+      "label": "สำนักงานใหญ่",
+      "kind": "building"
+    },
+    {
+      "id": "resident-wheelchair",
+      "label": "ผู้สูงอายุใช้รถเข็น",
+      "kind": "character"
+    },
+    {
+      "id": "room-training",
+      "kind": "room",
+      "label": "ห้องฝึกอบรม"
+    }
+  ]
+}

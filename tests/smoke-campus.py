@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 url=os.environ.get('CMNH_TEST_URL','http://127.0.0.1:8000/')
 artifacts=Path(os.environ.get('CMNH_TEST_ARTIFACTS','/tmp/cmnh-campus-tests'));artifacts.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
-    browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+    browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--enable-unsafe-swiftshader'])
     page=browser.new_page(viewport={'width':1280,'height':853});errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(url,wait_until='domcontentloaded');page.wait_for_function('window.HealthcareEmpireV14?.campus.getState()?.ready')

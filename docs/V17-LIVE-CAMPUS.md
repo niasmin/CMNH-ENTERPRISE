@@ -1,3 +1,5 @@
+> Graphics renderer superseded by [V18 low-poly 3D](V18-LOW-POLY.md). Saved-state gameplay remains in use.
+
 # Live campus correction
 
 The prior default screen was a finished illustration with eleven preset room labels. Building, admitting or hiring mostly changed HUD numbers and pins; the drawing did not represent the saved centre. That was a functional and visual mismatch, not evidence of a completed game.

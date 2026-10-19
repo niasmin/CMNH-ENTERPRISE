@@ -41,13 +41,18 @@ html, engine_count = re.subn(
 )
 if engine_count != 1:
     raise SystemExit("V11 archive engine block not found; refusing to build with inconsistent game rules")
+# Only the state bridge and public cloud configuration are retained from the archived UI.
+html = re.sub(r"<script\b[^>]*\bsrc=[\"']([^\"']+)[\"'][^>]*></script>",
+              lambda m: m.group(0) if m.group(1) in ("healthcare-core.js", "cloud-config.js") else "", html)
+html = re.sub(r"<link\b[^>]*rel=[\"']stylesheet[\"'][^>]*>", "", html)
+
 html = html.replace(
     "</body></html>",
-    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v12-ui.css"><script defer src="v12-ui.js"></script><script defer src="v12-rooms-integration.js"></script><link rel="stylesheet" href="v13-tycoon.css"><script defer src="v13-tycoon.js"></script><link rel="stylesheet" href="v14-care-empire.css"><script defer src="v14-assets.js"></script><link rel="stylesheet" href="v16-animation.css"><script defer src="v16-animation.js"></script><script defer src="v14-world.js"></script><link rel="stylesheet" href="v15-phases.css"><script defer src="v15-phases.js"></script><link rel="stylesheet" href="v17-campus.css"><script defer src="v17-campus.js"></script><script defer src="v14-care-empire.js"></script></body></html>'
+    '<script defer src="v11-supabase-save.js"></script><link rel="stylesheet" href="v14-care-empire.css"><link rel="stylesheet" href="v16-animation.css"><script defer src="v16-animation.js"></script><link rel="stylesheet" href="v15-phases.css"><script defer src="v15-phases.js"></script><link rel="stylesheet" href="v17-campus.css"><script defer src="assets/v18/vendor/three.min.js"></script><script defer src="v18-models.js"></script><script defer src="v18-assets.js"></script><script defer src="v18-world.js"></script><link rel="stylesheet" href="v18-theme.css"><script defer src="v14-care-empire.js"></script><script defer src="v18-theme.js"></script></body></html>'
 )
 (SITE / "index.html").write_text(html, encoding="utf-8")
 (SITE / "v11-supabase-save.js").write_bytes((ROOT / "v11-supabase-save.js").read_bytes())
-for name in ("healthcare-core.js", "v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css", "v14-care-empire.css", "v14-assets.js", "v14-world.js", "v14-care-empire.js", "v15-phases.css", "v15-phases.js", "v16-animation.js", "v16-animation.css", "v17-campus.js", "v17-campus.css"):
+for name in ("healthcare-core.js", "v12-ui.js", "v12-ui.css", "v12-rooms-integration.js", "v13-tycoon.js", "v13-tycoon.css", "v14-care-empire.css", "v14-assets.js", "v14-world.js", "v14-care-empire.js", "v15-phases.css", "v15-phases.js", "v16-animation.js", "v16-animation.css", "v17-campus.js", "v17-campus.css", "v18-models.js", "v18-assets.js", "v18-world.js", "v18-theme.js", "v18-theme.css"):
     (SITE / name).write_bytes((ROOT / name).read_bytes())
 (SITE / "cloud-config.js").write_text(
     "window.HE_CLOUD_CONFIG = Object.freeze({"

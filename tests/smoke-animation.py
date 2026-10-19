@@ -7,7 +7,7 @@ url = os.environ.get('CMNH_TEST_URL', 'http://127.0.0.1:8000/')
 artifacts = Path(os.environ.get('CMNH_TEST_ARTIFACTS', '/tmp/cmnh-animation-tests'))
 artifacts.mkdir(parents=True, exist_ok=True)
 with sync_playwright() as p:
-    browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox', '--disable-dev-shm-usage'])
+    browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox', '--disable-dev-shm-usage','--enable-unsafe-swiftshader'])
     page = browser.new_page(viewport={'width':1280,'height':853})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
@@ -69,7 +69,7 @@ with sync_playwright() as p:
     page.evaluate("HealthcareEmpireV14.open('build')")
     page.locator('.h14-card').filter(has_text='หอพักผู้สูงอายุ').click()
     assert page.evaluate('HealthcareEmpireV14.world.getState().effectCount') == 1
-    assert page.locator('.h16-new-building').count() == 1
+    assert page.locator('.h17-building').count() == 4
     state_before = page.evaluate('HealthcareBridge.getState()')
     effect_count = page.evaluate('HealthcareEmpireV14.world.getState().effectCount')
     assert not page.evaluate("HealthcareEmpireV14.command('build',{building:'hospital'})")
