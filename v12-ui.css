@@ -1,7 +1,7 @@
 /* V12 mobile-first visual shell. Existing simulation engine remains authoritative. */
 html,body{margin:0!important;padding:0!important;background:#9adcf1!important;overflow-x:hidden!important;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif!important}
-body> :not(#he12-app):not(#he3d-root):not(#he-cloud-panel):not(.he107-overlay):not(.he-cozy-popup):not(.he-cozy-scrim):not(script):not(style){display:none!important}
-body.he12-show-legacy> :not(#he12-app):not(#he3d-root):not(#he-cloud-panel):not(.he107-overlay):not(.he-cozy-popup):not(.he-cozy-scrim):not(script):not(style){display:revert!important}
+body> :not(#he12-app):not(#he13):not(#t13return):not(#he3d-root):not(#he-cloud-panel):not(.he107-overlay):not(.he-cozy-popup):not(.he-cozy-scrim):not(script):not(style){display:none!important}
+body.he12-show-legacy> :not(#he12-app):not(#he13):not(#t13return):not(#he3d-root):not(#he-cloud-panel):not(.he107-overlay):not(.he-cozy-popup):not(.he-cozy-scrim):not(script):not(style){display:revert!important}
 #he12-app{--blue:#0a638a;--ink:#173d56;position:relative;width:min(100%,650px);min-height:100dvh;margin:0 auto;background:linear-gradient(160deg,#72c5f3,#c5f6e4);color:var(--ink);overflow:hidden;isolation:isolate}
 #he12-app *{box-sizing:border-box}
 #he12-app button{font:inherit;cursor:pointer;touch-action:manipulation}
